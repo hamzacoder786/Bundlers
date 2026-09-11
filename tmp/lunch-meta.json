@@ -1,0 +1,45 @@
+{
+  "CompilerSettings": {
+    "evmVersion": "osaka",
+    "libraries": {},
+    "metadata": {
+      "appendCBOR": true,
+      "bytecodeHash": "ipfs",
+      "useLiteralContent": false
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "": [
+          "*"
+        ],
+        "*": [
+          "*"
+        ]
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=forge-lib/openzeppelin-contracts/",
+      "@openzeppelin/contracts-upgradeable/=forge-lib/openzeppelin-contracts-upgradeable/",
+      "openzeppelin-contracts-upgradeable/=forge-lib/openzeppelin-contracts-upgradeable/",
+      "openzeppelin-contracts/=forge-lib/openzeppelin-contracts/"
+    ],
+    "viaIR": true
+  },
+  "ConstructorArguments": "0x00000000000000000000000064fc830e510ef95548001ada4af2d357c5517d55000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a41459457a0000000000000000000000001f7d7550b1b028f7571e69a784071f0205fd2efa00000000000000000000000073991a25c818bf1f1128deaab1492d45638de0d30000000000000000000000000bd7d308f8e1639fab988df18a8011f41eacad73000000000000000000000000a07398bc425f6185e6abae5d093ff308ae9766a30000000000000000000000007b2daf7f696bb844c7786693062d6619d1858cc900000000000000000000000000000000000000000000000000000000",
+  "OptimizationRuns": 200,
+  "ImplementationAddress": "0xc419ba7b9c32103ab8b1a04de4ea2ed518e03749",
+  "ImplementationAddresses": [
+    "0xc419ba7b9c32103ab8b1a04de4ea2ed518e03749"
+  ],
+  "IsProxy": "true",
+  "ContractName": "ERC1967Proxy",
+  "CompilerVersion": "v0.8.30+commit.73712a01",
+  "OptimizationUsed": "true",
+  "EVMVersion": "osaka",
+  "FileName": "forge-lib/openzeppelin-contracts/proxy/ERC1967/ERC1967Proxy.sol",
+  "Address": "0xf5ac14e7691ef44b15b59fcc6a756e41a3e5efd6"
+}

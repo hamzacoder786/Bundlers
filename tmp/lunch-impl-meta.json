@@ -1,0 +1,51 @@
+{
+  "CompilerSettings": {
+    "evmVersion": "osaka",
+    "libraries": {
+      "contracts/plainfactory/LunchV3TokenDeployer.sol": {
+        "LunchV3TokenDeployer": "0x2a62263f408587727da9be7412361371befe7e0c"
+      }
+    },
+    "metadata": {
+      "appendCBOR": true,
+      "bytecodeHash": "ipfs",
+      "useLiteralContent": false
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "": [
+          "*"
+        ],
+        "*": [
+          "*"
+        ]
+      }
+    },
+    "remappings": [
+      "forge-std/=/opt/hood-launchpad/forge-lib/forge-std/src/",
+      "@openzeppelin/contracts/=forge-lib/openzeppelin-contracts/",
+      "@openzeppelin/contracts-upgradeable/=forge-lib/openzeppelin-contracts-upgradeable/",
+      "openzeppelin-contracts-upgradeable/=forge-lib/openzeppelin-contracts-upgradeable/",
+      "openzeppelin-contracts/=forge-lib/openzeppelin-contracts/"
+    ],
+    "viaIR": true
+  },
+  "ExternalLibraries": [
+    {
+      "address_hash": "0x2a62263f408587727da9be7412361371befe7e0c",
+      "name": "contracts/plainfactory/LunchV3TokenDeployer.sol:LunchV3TokenDeployer"
+    }
+  ],
+  "OptimizationRuns": 200,
+  "IsProxy": "false",
+  "ContractName": "LunchV3LauncherSingle",
+  "CompilerVersion": "v0.8.30+commit.73712a01",
+  "OptimizationUsed": "true",
+  "EVMVersion": "osaka",
+  "FileName": "contracts/plainfactory/LunchV3LauncherSingle.sol",
+  "Address": "0xc419ba7b9c32103ab8b1a04de4ea2ed518e03749"
+}

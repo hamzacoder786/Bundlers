@@ -1,0 +1,46 @@
+{
+  "CompilerSettings": {
+    "evmVersion": "cancun",
+    "libraries": {},
+    "metadata": {
+      "appendCBOR": true,
+      "bytecodeHash": "ipfs",
+      "useLiteralContent": false
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 300
+    },
+    "outputSelection": {
+      "*": {
+        "": [
+          "*"
+        ],
+        "*": [
+          "*"
+        ]
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=contracts/lib/openzeppelin-contracts/contracts/",
+      "@uniswap/v3-core/=contracts/lib/v3-core/",
+      "@uniswap/v3-periphery/=contracts/lib/v3-periphery/",
+      "forge-std/=contracts/lib/forge-std/src/",
+      "v3-core/=contracts/lib/v3-core/contracts/",
+      "v3-periphery/=contracts/lib/v3-periphery/contracts/",
+      "erc4626-tests/=contracts/lib/openzeppelin-contracts/lib/erc4626-tests/",
+      "halmos-cheatcodes/=contracts/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/",
+      "openzeppelin-contracts/=contracts/lib/openzeppelin-contracts/"
+    ],
+    "viaIR": true
+  },
+  "ConstructorArguments": "0x000000000000000000000000da4bcee76b29efec9697fcf663601c2042043968000000000000000000000000736d76699c26d0d966744cae304c000d471f7f350000000000000000000000000000000000000000000000000001c6bf52634000",
+  "OptimizationRuns": 300,
+  "IsProxy": "false",
+  "ContractName": "PonsLaunchFactory",
+  "CompilerVersion": "v0.8.30+commit.73712a01",
+  "OptimizationUsed": "true",
+  "EVMVersion": "cancun",
+  "FileName": "contracts/src/PonsLaunchFactory.sol",
+  "Address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb"
+}

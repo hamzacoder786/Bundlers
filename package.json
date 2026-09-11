@@ -1,0 +1,42 @@
+{
+  "name": "rh-launch-token-interface",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile && node scripts/export-artifact.mjs",
+    "dev": "npm run compile && node --env-file=.env.local node_modules/vite/bin/vite.js --host 127.0.0.1",
+    "build": "npm run compile && node --env-file=.env.local node_modules/vite/bin/vite.js build",
+    "preview": "node --env-file=.env.local node_modules/vite/bin/vite.js preview --host 127.0.0.1",
+    "serve": "node server.mjs",
+    "test": "node --test test/*.test.mjs && hardhat test test/lunch-atomic-executor.test.cjs test/lunch-7702-atomic.test.cjs",
+    "lunch:buyers": "node scripts/lunch-buyers.mjs",
+    "lunch:launch-and-buy": "node scripts/lunch-launch-and-buy.mjs",
+    "lunch:atomic:deploy": "hardhat run scripts/deploy-lunch-atomic.cjs --network robinhood",
+    "lunch:atomic:launch": "node scripts/lunch-atomic-launch.mjs",
+    "lunch:7702:deploy": "hardhat run scripts/deploy-lunch-7702.cjs --network robinhood",
+    "lunch:7702:launch": "node scripts/lunch-7702-launch.mjs",
+    "lunch:7702:revoke": "node scripts/lunch-7702-revoke.mjs"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "4.9.6",
+    "@relayprotocol/relay-sdk": "^7.0.3",
+    "@relayprotocol/relay-svm-wallet-adapter": "^21.0.4",
+    "@solana/web3.js": "^1.98.4",
+    "bcryptjs": "^3.0.3",
+    "bs58": "^6.0.0",
+    "cookie": "^2.0.1",
+    "ethers": "^6.13.4",
+    "mongodb": "^7.6.0",
+    "viem": "^2.56.3",
+    "vite": "^5.4.11"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.15",
+    "vite-plugin-node-polyfills": "^0.28.0"
+  },
+  "overrides": {
+    "uuid": "8.3.2"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IAirlock",
+  "sourceName": "contracts/interfaces/IDoppler.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "initialSupply",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "numTokensToSell",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "numeraire",
+              "type": "address"
+            },
+            {
+              "internalType": "contract ITokenFactory",
+              "name": "tokenFactory",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "tokenFactoryData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "contract IGovernanceFactory",
+              "name": "governanceFactory",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "governanceFactoryData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "contract IPoolInitializer",
+              "name": "poolInitializer",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "poolInitializerData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "contract ILiquidityMigrator",
+              "name": "liquidityMigrator",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "liquidityMigratorData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "address",
+              "name": "integrator",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "salt",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct IAirlock.CreateParams",
+          "name": "createData",
+          "type": "tuple"
+        }
+      ],
+      "name": "create",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "asset",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "pool",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "governance",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "timelock",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "migrationPool",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "module",
+          "type": "address"
+        }
+      ],
+      "name": "getModuleState",
+      "outputs": [
+        {
+          "internalType": "enum ModuleState",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
