@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "compile": "hardhat compile && node scripts/export-artifact.mjs",
-    "dev": "npm run compile && node --env-file=.env.local node_modules/vite/bin/vite.js --host 127.0.0.1",
-    "build": "npm run compile && node --env-file=.env.local node_modules/vite/bin/vite.js build",
-    "preview": "node --env-file=.env.local node_modules/vite/bin/vite.js preview --host 127.0.0.1",
+    "dev": "npm run compile && node scripts/run-with-env.mjs node_modules/vite/bin/vite.js --host 127.0.0.1",
+    "build": "npm run compile && node scripts/run-with-env.mjs node_modules/vite/bin/vite.js build",
+    "preview": "node scripts/run-with-env.mjs node_modules/vite/bin/vite.js preview --host 127.0.0.1",
     "serve": "node server.mjs",
     "test": "node --test test/*.test.mjs && hardhat test test/lunch-atomic-executor.test.cjs test/lunch-7702-atomic.test.cjs",
     "lunch:buyers": "node scripts/lunch-buyers.mjs",
