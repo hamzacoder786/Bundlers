@@ -118,13 +118,55 @@ function adaptEthersWallet(wallet) {
 // session only, exactly like every other wash relay wallet) — signs and
 // sends via a Connection, matching adaptSolanaWallet's expected callback
 // shape (see the package's real .d.ts, checked before writing this).
+//
+// handleConfirmTransactionStep is overridden after the fact:
+// @relayprotocol/relay-svm-wallet-adapter's own implementation calls
+// connection.getLatestBlockhash() *after* the transaction was already sent
+// (see node_modules/@relayprotocol/relay-svm-wallet-adapter/_esm/src/adapter.js),
+// then confirms using THAT fresh blockhash's lastValidBlockHeight instead of
+// the one the transaction was actually signed/sent against. That mismatch
+// makes confirmTransaction think the block-height window closed early, so it
+// throws TransactionExpiredBlockheightExceededError even when the send
+// (sendSolanaTransactionWithFreshBlockhash below) already confirmed the
+// transaction on chain moments earlier — confirmed live: bridge-back legs
+// failed with "Signature ... has expired: block height exceeded" while the
+// signature was in fact landing. Since our own send step already awaits
+// connection.confirmTransaction() before returning, this override just
+// checks the signature's actual status instead of re-running a second,
+// miscalibrated confirmation.
 function adaptSolanaKeypairWallet(keypair, connection) {
-  return adaptSolanaWallet(
+  const wallet = adaptSolanaWallet(
     keypair.publicKey.toBase58(),
     SOLANA_CHAIN_ID,
     connection,
     async (transaction) => sendSolanaTransactionWithFreshBlockhash(connection, keypair, transaction),
   );
+  wallet.handleConfirmTransactionStep = async (txHash) => {
+    const { value } = await connection.getSignatureStatuses([txHash], { searchTransactionHistory: true });
+    const status = value?.[0];
+    if (status?.err) throw new Error(`Transaction failed: ${JSON.stringify(status.err)}`);
+    if (!status || (status.confirmationStatus !== "confirmed" && status.confirmationStatus !== "finalized")) {
+      // Our send step already awaited confirmation before returning this
+      // signature, so a missing/unconfirmed status here means the RPC node
+      // just hasn't indexed it yet, not that it failed — poll briefly
+      // instead of trusting a single read.
+      const deadline = Date.now() + 30_000;
+      let latest = status;
+      while (Date.now() < deadline) {
+        await new Promise((resolve) => setTimeout(resolve, 2_000));
+        const polled = await connection.getSignatureStatuses([txHash], { searchTransactionHistory: true });
+        latest = polled.value?.[0];
+        if (latest?.err) throw new Error(`Transaction failed: ${JSON.stringify(latest.err)}`);
+        if (latest?.confirmationStatus === "confirmed" || latest?.confirmationStatus === "finalized") break;
+      }
+      if (!latest || (latest.confirmationStatus !== "confirmed" && latest.confirmationStatus !== "finalized")) {
+        throw new Error(`Transaction ${txHash} could not be confirmed as landed.`);
+      }
+    }
+    const slot = status?.slot ?? (await connection.getSignatureStatuses([txHash])).value?.[0]?.slot ?? 0;
+    return { blockHash: String(slot), blockNumber: slot, txHash };
+  };
+  return wallet;
 }
 
 // A Solana transaction is only valid for ~150 blocks (~60-90s) after the
